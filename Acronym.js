@@ -30,17 +30,29 @@ function createAcronym(word) {
   return acronym;
 }
 
-// Function to create a random acronym string
-function generateRandomAcronym() {
-  // Generate a random word
-  var randomWord = generateRandomWord();
+// Function to generate a random initialism for an acronym
+function generateRandomInitialism(acronym) {
+  // Split the acronym into an array of individual letters
+  var letters = acronym.split('');
   
-  // Create an acronym from the random word
-  var acronym = createAcronym(randomWord);
+  // Create an empty initialism string
+  var initialism = '';
   
-  // Return the acronym string
-  return acronym;
+  // Loop through the letters array
+  for (var i = 0; i < letters.length; i++) {
+    // Generate a random word
+    var randomWord = generateRandomWord();
+    
+    // Add the word to the initialism string
+    initialism += randomWord + ' ';
+  }
+  
+  // Return the initialism string
+  return initialism;
 }
 
-// Test the function
-console.log(generateRandomAcronym()); // Output: a random acronym string
+// Test the program
+var inputWord = 'JavaScript';
+var acronym = createAcronym(inputWord);
+console.log(acronym); // Output: JS
+console.log(generateRandomInitialism(acronym)); // Output: a random initialism for the acronym
