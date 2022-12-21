@@ -4,10 +4,18 @@ npm install random-words
 // Import the library
 var randomWords = require('random-words');
 
-// Function to generate a random word
-function generateRandomWord() {
-  // Generate and return a random word
-  return randomWords();
+// Function to generate a random word starting with a specific letter
+function generateRandomWordStartingWith(letter) {
+  // Generate a random word
+  var randomWord = randomWords();
+  
+  // If the word starts with the specified letter, return it
+  if (randomWord[0] === letter) {
+    return randomWord;
+  }
+  
+  // Otherwise, generate a new word until one is found that starts with the specified letter
+  return generateRandomWordStartingWith(letter);
 }
 
 // Function to create an acronym from an input word
@@ -40,8 +48,8 @@ function generateRandomInitialism(acronym) {
   
   // Loop through the letters array
   for (var i = 0; i < letters.length; i++) {
-    // Generate a random word
-    var randomWord = generateRandomWord();
+    // Generate a random word starting with the current letter
+    var randomWord = generateRandomWordStartingWith(letters[i]);
     
     // Add the word to the initialism string
     initialism += randomWord + ' ';
